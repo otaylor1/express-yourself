@@ -50,8 +50,17 @@ namespace ExpressYourself
         public static string GetLength(string str)
         {
 
-            //TODO
-            return "";
+            var lengthExpression = new Regex(@"Type\: (.*),Title\: (.*),+Length\: (.*)");
+            var match = lengthExpression.Match(str);
+            if (!match.Success)
+            {
+                return "Length Not Found";
+            }
+            else
+            {
+                return match.Groups[3].Value;
+            }
+
         }
 
         public static bool IsValidLine(string str)
