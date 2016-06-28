@@ -15,8 +15,7 @@ namespace ExpressYourself
         /// <param name="str">The string to search</param>
         /// <returns>the title string if it exists</returns>
         public static string GetTitle(string str)
-        {
-            
+        {          
             var titleExpression = new Regex(@"Title\: (.*),+");
             var match = titleExpression.Match(str);
             if (!match.Success)
@@ -26,13 +25,11 @@ namespace ExpressYourself
             else
             {
                 return match.Groups[1].Value;
-            }
-            
+            }           
         }
 
         public static string GetType(string str)
         {
-
             var typeExpression = new Regex(@"Type\: (.*),Title\: (.*),+");
             var match = typeExpression.Match(str);
             if (!match.Success)
@@ -43,13 +40,10 @@ namespace ExpressYourself
             {
                 return match.Groups[1].Value;
             }
-
-
         }
 
         public static string GetLength(string str)
         {
-
             var lengthExpression = new Regex(@"Type\: (.*),Title\: (.*),+Length\: (.*)");
             var match = lengthExpression.Match(str);
             if (!match.Success)
@@ -60,16 +54,20 @@ namespace ExpressYourself
             {
                 return match.Groups[3].Value;
             }
-
         }
 
         public static bool IsValidLine(string str)
         {
-
-            //TODO
-            return true;
-            
-         
+            var validExpression = new Regex(@"Type\:.*,Title\:.*,Length\:.*");
+            var match = validExpression.Match(str);
+            if (!match.Success)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
